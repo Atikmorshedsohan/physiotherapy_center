@@ -1,0 +1,25 @@
+{% load static %}
+<div class="header">
+  <!-- Logo on the left -->
+  <a href="https://just.edu.bd/" target="_blank" rel="noopener">
+    <img
+      src="{% static 'image/logo.png' %}"
+      alt="Physiotherapy Center Logo"
+      class="logo"
+      width="50"
+      height="20"
+    />
+  </a>
+  <span class="logo-text" style="vertical-align: middle; margin-left: 10px">
+    Jashore University of Science and Technology
+  </span>
+  <!-- University name after the logo -->
+  <nav class="nav">
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="{% url 'services' %}">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</div>

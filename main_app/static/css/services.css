@@ -1,0 +1,132 @@
+/* ===== General Body & Typography ===== */
+body {
+  background-color: #f0fdfb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ===== Headers & Typography ===== */
+h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===== Sections Styling ===== */
+.first_section,
+.second_section {
+  max-width: 100%;
+  height: 70vh;
+  margin: 2%;
+  padding: auto;
+  border: 2px solid #000;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.first_section {
+  background-color: aqua;
+}
+
+.second_section {
+  background-color: coral;
+}
+
+/* ===== Container & Box Layout ===== */
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 2pc auto;
+  padding: 20px;
+  justify-content: center;
+  height: 75%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 300px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Images Inside Box ===== */
+.box img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ===== Text & Paragraph in Box ===== */
+.box p {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* ===== Button Styling ===== */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* ===== Parent Container for Intro Section ===== */
+.parent {
+  max-width: 800px;
+  margin: 60px auto 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.intro {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.description {
+  margin: 10px 0 20px;
+  color: #666;
+}
+
+.services-list li:hover {
+  background-color: #b2f0df;
+}
+
+.services-list li::before {
+  content: "✓";
+  color: #2a6e60;
+  margin-right: 8px;
+}

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/services.css' %}" />
+    <title>Services | Physiotherapy Center</title>
+  </head>
+  <body>
+    {% include 'header.html' %}
+
+    <div class="parent">
+      <h1>Our Services</h1>
+      <span class="intro">Welcome to our Physiotherapy Center</span>
+      <hr />
+      <p class="description">
+        We provide a wide range of physiotherapy services to help you recover
+        and improve your physical health.
+      </p>
+    </div>
+
+    <!-- First Services Section -->
+    <section class="first_section">
+      <div class="container">
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/back-pain-l3.jpg" alt="Back Pain" />
+          <p>Back pain is often caused by poor posture, injuries, or spinal issues. Physiotherapy helps relieve tension and improve mobility.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/neck-pain-service.jpg" alt="Neck Pain" />
+          <p>Neck pain can result from muscle strain or nerve compression. Therapy focuses on stretching, strengthening, and posture correction.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/Knee-pain-l1.jpg" alt="Knee Pain" />
+          <p>Knee pain may stem from arthritis, injuries, or overuse. Treatment includes manual therapy, exercises, and mobility work.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/pelvic-care-l1.jpg" alt="Pelvic Care" />
+          <p>Pelvic floor therapy addresses bladder control, pain, and core stability, often after childbirth or surgery.</p>
+          <button class="btn">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Second Services Section -->
+    <section class="second_section">
+      <div class="container">
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/rehab-therapy-l1.jpg" alt="Rehabilitation Therapy" />
+          <p>Rehabilitation aids recovery from injury or surgery by restoring strength, movement, and independence through guided therapy.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/r-artra-1.jpg" alt="Arthritis Treatment" />
+          <p>Physiotherapy for arthritis reduces joint stiffness and pain, improving function through tailored exercise and joint care.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/d-syn.jpg" alt="De Quervain Syndrome" />
+          <p>This wrist condition causes pain near the thumb. Therapy includes splinting, stretching, and reducing inflammation.</p>
+          <button class="btn">Learn More</button>
+        </div>
+        <div class="box">
+          <img src="https://visionphysiotherapy.com/wp-content/uploads/2023/02/plid-p-l1.jpg" alt="Plantar PLID" />
+          <p>PLID affects the lower spine, causing leg pain and numbness. Treatment includes traction, core strengthening, and posture correction.</p>
+          <button class="btn">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

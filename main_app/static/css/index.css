@@ -1,0 +1,182 @@
+/* General Page Layout */
+body {
+  background-color: #e6f4f1;
+  font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Header Navigation */
+
+.header {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #4caf50;
+  padding: 12px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom-left-radius: 20px 24px;
+  border-bottom-right-radius: 20px 24px;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.1),
+}
+
+/* Logo (already has width/height inline, no need to resize here) */
+.logo {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Navigation on right */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #e0f7e9;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+}
+
+
+/* 🔹 Background Box Section */
+.bg-box {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  margin-top: 20px;
+}
+
+/* Background Image */
+.bg-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../image/default-teacher-cover.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0.75);
+  z-index: 0;
+}
+
+/* Foreground Content */
+.bg-box > * {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+}
+
+/* Container Text Styles */
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #3fb68b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #2b7a78;
+  cursor: pointer;
+}
+
+/* 🔹 Footer Section */
+/* 🔹 Compact Footer Section */
+footer {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #ecf0f1;
+  text-align: center;
+  padding: 10px 15px;          /* Smaller vertical padding */
+  font-size: 0.75rem;          /* Smaller font */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.3px;
+  margin-top: auto;
+  border-top-left-radius: 20px 24px;
+  border-top-right-radius: 20px 24px;
+}
+
+footer p {
+  margin: 4px 0;               /* Less spacing between lines */
+}
+
+footer a {
+  color: #f39c12;
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: #ffd180;
+  text-decoration: underline;
+}
+
+.footer-links {
+  margin-top: 6px;             /* Less space above links */
+}
+
+
