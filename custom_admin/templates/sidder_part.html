@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/sidder_part.css' %}" />
+  <title>Admin Sidebar</title>
+</head>
+<body>
+<div class="sidebar">
+  <h2>Hospital Admin</h2>
+  <ul>
+    <li><a href="{% url 'custom_admin:dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'custom_admin:add_doctor' %}">Add Doctor</a></li>
+    <li><a href="{% url 'custom_admin:doctor_list' %}">Doctors</a></li>
+    <li><a href="{% url 'custom_admin:patient_list' %}">Patients</a></li>
+    <li><a href="{% url 'custom_admin:appointment_list' %}">Appointments</a></li>
+    <li><a href="{% url 'custom_admin:diseases' %}">Diseases</a></li>
+    <li><a href="#">Messages</a></li>
+    <li><a href="#">Reports</a></li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Registration</title>
+
+    <!-- CSS Files -->
+     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}" />
+    
+  </head>
+  <body>
+    <!-- Header -->
+    {% include 'header.html' %}
+
+    <!-- Registration Form Area -->
+    <div class="bg-box">
+      <div class="center-wrapper">
+        <div class="register-container">
+          <h2>Create Your Account</h2>
+
+          <form method="POST" novalidate autocomplete="off">
+            {% csrf_token %}
+             {% for field in form %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }} {% if field.help_text %}
+              <small class="help-text">{{ field.help_text|safe }}</small>
+              {% endif %} {% if field.errors %}
+              <div class="error">
+                {% for error in field.errors %} {{ error }} {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit">Register</button>
+          </form>
+
+          <div class="register-text">
+            Already have an account? <a href="{% url 'login' %}">Login here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/registration.js' %}"></script>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+  </body>
+</html>

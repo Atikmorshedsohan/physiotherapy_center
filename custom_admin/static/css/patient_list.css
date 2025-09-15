@@ -1,0 +1,160 @@
+/* ================================
+   General Layout
+================================ */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display: flex;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* ================================
+   Main Content
+================================ */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ================================
+   Header
+================================ */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.user-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  padding: 6px 12px;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+/* ================================
+   Table Section
+================================ */
+.table-section {
+  margin-top: 25px;
+}
+
+.table-section h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+/* Search Bar */
+#searchInput {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #2c3e50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(44, 62, 80, 0.3);
+}
+
+/* ================================
+   Table Styles
+================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+table thead {
+  background: #2c3e50;
+  color: white;
+}
+
+table th, 
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Hover + Clickable Header */
+table thead th {
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+
+table thead th:hover {
+  background: #3498db;
+}
+
+table thead th:active,
+table thead th:focus {
+  background: #1f3a64;
+  outline: none;
+}
+
+/* Row Hover */
+table tbody tr:hover {
+  background: #f1f7ff;
+  transition: background 0.2s ease;
+}
+
+/* Empty Data */
+.no-data {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  table th, table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  #searchInput {
+    max-width: 100%;
+  }
+}

@@ -6,7 +6,7 @@ class User(AbstractUser):
     full_name = models.CharField(max_length=150)
     phone = models.CharField(max_length=15)
     nid = models.CharField(max_length=20)
-    age = models.IntegerField()
+    age = models.IntegerField(blank=True, null=True)
     gender = models.CharField(max_length=10)
     is_admin = models.BooleanField(default=False)
 
@@ -28,7 +28,8 @@ class Doctor(models.Model):
     specialization = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
-    availability = models.TextField(help_text='Availability schedule as JSON or text')
+    availability = models.JSONField(default=dict, blank=True, null=True)
+
 
     def __str__(self):
         return self.full_name
@@ -77,3 +78,15 @@ class ContactMessage(models.Model):
     message = models.TextField()
     admin = models.ForeignKey(Admin, on_delete=models.SET_NULL, null=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    age = models.IntegerField(blank=True, null=True)
+    medical_history = models.TextField(blank=True, null=True)
+    
+
+    def __str__(self):
+        return self.user.username

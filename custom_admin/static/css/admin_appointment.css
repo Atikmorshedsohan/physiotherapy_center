@@ -1,0 +1,78 @@
+/* Layout: sidebar + content */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Appointment content sits right of sidebar */
+.admin-appointment-page {
+  flex: 1;
+  padding: 20px;
+  background: #f4f6f9;
+  overflow-x: auto;
+}
+
+/* Keep heading style simple */
+.admin-appointment-page h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+/* Search input */
+.admin-appointment-page #search {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Table */
+.admin-appointment-page table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-appointment-page table thead {
+  background: #2c3e50;
+  color: white;
+}
+
+.admin-appointment-page table th,
+.admin-appointment-page table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-appointment-page table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.admin-appointment-page table tbody tr:hover {
+  background: #f1f7ff;
+  transform: scale(1.002);
+}
+
+/* Delete button */
+.admin-appointment-page .delete-btn {
+  background: #e74c3c;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin-appointment-page .delete-btn:hover {
+  background: #c0392b;
+}

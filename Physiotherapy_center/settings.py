@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main_app",
+    "custom_admin",
 ]
 
 MIDDLEWARE = [
@@ -121,9 +122,12 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static")
+# ]
+
+LOGIN_REDIRECT_URL = 'home'    # After successful login
+LOGOUT_REDIRECT_URL = 'login'  # If not using next_page in LogoutView
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

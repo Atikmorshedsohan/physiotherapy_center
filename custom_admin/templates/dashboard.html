@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    {% include 'sidder_part.html' %}
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <h1>Dashboard</h1>
+      <div class="user-info">
+        <span>Welcome, {{ request.user.username }}</span>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+      </div>
+    </header>
+
+    <!-- Stats Cards -->
+    <section class="cards">
+      <div class="card">
+        <h3>Total Doctors</h3>
+        <p>{{ doctor_count }}</p>
+      </div>
+      <div class="card">
+        <h3>Total Patients</h3>
+        <p>{{ patient_count }}</p>
+      </div>
+      <div class="card">
+        <h3>Appointments</h3>
+        <p>{{ appointment_count }}</p>
+      </div>
+      <div class="card">
+        <h3>Messages</h3>
+        <p>{{ message_count }}</p>
+      </div>
+    </section>
+
+    <!-- Recent Appointments Table -->
+    <section class="table-section">
+      <h2>Recent Appointments</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for appointment in recent_appointments %}
+          <tr>
+            <td>{{ appointment.id }}</td>
+            <td>{{ appointment.patient.full_name }}</td>
+            <td>{{ appointment.doctor.full_name }}</td>
+            <td>{{ appointment.scheduled_date }} {{ appointment.scheduled_time }}</td>
+            <td>{{ appointment.status }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5" class="no-data">No appointments found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

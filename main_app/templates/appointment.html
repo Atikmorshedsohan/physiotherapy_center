@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Site</title>
+  <!-- Page Specific Styles -->
+  <link rel="stylesheet" href="{% static 'css/appointment.css' %}">
+</head>
+<body>
+  {% include 'header.html' %}
+    <!-- Page Title -->
+    <section class="page-title">
+      <h1>Book an Appointment</h1>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search doctor by name or specialization..."
+        onkeyup="showSuggestions()"
+      />
+      <div id="suggestions" class="suggestions-box"></div>
+    </section>
+
+    <!-- Appointment Form Modal -->
+    <div id="appointmentModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Book Appointment</h2>
+        <form id="appointmentForm">
+          <input type="hidden" name="doctor" id="doctorId" />
+
+          <!-- If logged in user is the patient -->
+          <input type="hidden" name="patient" id="patientId" value="{{ request.user.id }}">
+
+          <label for="scheduled_date">Date:</label>
+          <input type="date" name="scheduled_date" id="scheduledDate" required />
+
+          <label for="scheduled_time">Time:</label>
+          <input type="time" name="scheduled_time" id="scheduledTime" required />
+
+          <button type="submit">Confirm Booking</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Doctor List -->
+    <section id="doctorList" class="doctor-list"></section>
+
+    <script src="{% static 'js/appointment.js' %}"></script>
+  </body>
+</html>

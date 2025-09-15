@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctors List</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+  </head>
+  <body>
+    {% include 'sidder_part.html' %}
+
+    <div class="main-content">
+      <header>
+        <h1>Doctors List</h1>
+        <div class="user-info">
+          <span>Welcome, {{ request.user.username }}</span>
+          <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+      </header>
+
+      <section class="table-section">
+        <h2>All Doctors</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>Specialization</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Availability</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for doctor in doctors %}
+            <tr>
+              <td>{{ doctor.id }}</td>
+              <td>{{ doctor.full_name }}</td>
+              <td>{{ doctor.specialization }}</td>
+              <td>{{ doctor.email }}</td>
+              <td>{{ doctor.phone }}</td>
+              <td>
+                {% if doctor.availability %}
+                <ul>
+                  {% for day, time in doctor.availability.items %}
+                  <li><strong>{{ day }}:</strong> {{ time }}</li>
+                  {% endfor %}
+                </ul>
+                {% else %}
+                <em>No availability set</em>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="no-data">No doctors found.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

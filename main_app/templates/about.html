@@ -1,0 +1,51 @@
+{% load static %}
+
+{% block content %}
+<div class="about-main">
+  <div class="header">
+    <div class="header-text">
+      <h2>Our Team is Ready to Help You</h2>
+     
+    </div>
+    <img src="{% static 'image/default-teacher-cover.jpg' %}" alt="Center" class="header-img">
+  </div>
+
+  <div class="about-content">
+    <h3>The Best Physiotherapy Center in Jashore-<br>JUST Physiotherapy Center</h3>
+    <p>
+      JUST Physiotherapy Center is widely regarded as the best physiotherapy center in Jashore, dedicated to delivering exceptional care...
+      <br><br>
+      Whether you’re in need of orthopedic physical therapy, specialized rehabilitation services, or simply searching for physiotherapy near me...
+    </p>
+
+    <div class="action-buttons">
+</button>
+      <button class="btn-teal">Message</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-value">11 Years</div>
+        <div class="stat-label">serving the Community</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">4.8</div>
+        <div class="stat-label">Facebook Rating</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">4.9</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+    </div>
+
+    <div class="review-card" id="review-section">
+      <h4>Google Reviews</h4>
+      <img src="https://i.ibb.co/6b2w2wF/review-sample.png" alt="Google review card" />
+    </div>
+  </div>
+</div>
+
+<!-- Link CSS and JS -->
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

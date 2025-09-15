@@ -1,0 +1,112 @@
+/* ✅ Container that centers everything */
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-top: 0;             /* Optional: adjust if header height is significant */
+}
+
+/* ✅ The registration form box */
+.register-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 50px;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;                /* Ensure it's above the background */
+  position: relative;
+  box-sizing: border-box;
+  color: #222;
+}
+
+
+
+/* ✅ Title */
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+/* ✅ Form styling */
+form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ✅ Each form group block */
+.form-group {
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ✅ Inputs and selects are uniform */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #222;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input::placeholder {
+  color: #888;
+}
+
+/* ✅ Submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Login link */
+.register-text {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #333;
+}
+
+.register-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* ✅ Error message styling */
+.error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}

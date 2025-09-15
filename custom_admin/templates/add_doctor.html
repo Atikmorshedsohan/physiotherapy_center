@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Doctor</title>
+    <link rel="stylesheet" href="{% static 'css/add_doctor.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sidder_part.css' %}" />
+
+  </head>
+  <body>
+    {% include 'sidder_part.html' %}
+    <div class="container">
+      <h2 class="form-title">Add New Doctor</h2>
+
+      <!-- Success Message -->
+      {% if success %}
+        <p class="success-message">{{ success }}</p>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_full_name">Full Name</label>
+          {{ form.full_name }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_specialization">Specialization</label>
+          {{ form.specialization }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_phone">Phone</label>
+          {{ form.phone }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_email">Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_availability">Availability</label>
+          <small class="help-text">
+            Example: {"Monday": "9AM-5PM", "Tuesday": "10AM-4PM"}
+          </small>
+          {{ form.availability }}
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn save-btn">Save Doctor</button>
+          <a href="{% url 'custom_admin:dashboard' %}" class="btn cancel-btn">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

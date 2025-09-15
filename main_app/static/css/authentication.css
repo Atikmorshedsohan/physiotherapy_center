@@ -1,0 +1,77 @@
+/* Overrides inside bg-box */
+.login-bg {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.login-container button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #43a047;
+}
+
+/* Register text below login form */
+.register-text {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #444;
+  text-align: center;
+}
+
+/* Register link */
+.register-text a {
+  color: #2a74d4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.register-text a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}

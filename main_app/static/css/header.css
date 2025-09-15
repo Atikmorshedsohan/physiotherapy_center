@@ -1,0 +1,116 @@
+/* 🔹 Header Navigation */
+.header {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0 48px;
+  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 80px;
+  border-bottom-left-radius: 20px 12px;
+  border-bottom-right-radius: 20px 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: block;
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+.logo-text a {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #185a9d;
+  letter-spacing: 0.5px;
+  margin-left: 0;
+  white-space: nowrap;
+  text-decoration: none; /* removes underline */
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap; /* ensures items stay in one line or wrap properly */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: inline-block;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background: #eaf3ff;
+  color: #185a9d;
+  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.10);
+}
+
+.nav-appointment {
+  background: #2979ff;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  margin-left: 18px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(41,121,255,0.08);
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-appointment:hover,
+.nav-appointment:focus {
+  background: #185a9d;
+  color: #fff !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ensures logo and nav stay properly spaced */
+  flex-wrap: wrap; /* keeps layout consistent on login */
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+}

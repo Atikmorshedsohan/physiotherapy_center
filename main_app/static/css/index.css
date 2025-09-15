@@ -4,20 +4,18 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Geneva, Verdana,
     sans-serif;
   margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   display: flex;
   flex-direction: column;
 }
 
 /* 🔹 Header Navigation */
-
 .header {
   width: 100%;
   margin: 0 auto;
-  background-color: #4caf50;
-  padding: 12px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff; /* White background */
+  padding: 0 48px;
+  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,37 +23,88 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom-left-radius: 20px 24px;
-  border-bottom-right-radius: 20px 24px;
-  box-shadow:
-    0 4px 8px rgba(0,0,0,0.1),
+  min-height: 80px;
+  border-bottom-left-radius: 20px 12px;
+  border-bottom-right-radius: 20px 12px;
 }
 
 /* Logo (already has width/height inline, no need to resize here) */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .logo {
   display: block;
-  height: auto;
+  height: 48px;
+  width: 48px;
   object-fit: contain;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #185a9d; /* Blue for university name */
+  letter-spacing: 0.5px;
+  margin-left: 0;
+  white-space: nowrap;
+  text-decoration: none; /* Remove underline */
 }
 
 /* Navigation on right */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 32px;
   margin: 0;
   padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  align-items: center;
+  min-height: 48px;
+  justify-content: flex-end;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  color: #000; /* Black anchoring links */
+  font-weight: 600;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: inline-block;
 }
 
-.nav-links li a:hover {
-  color: #e0f7e9;
+.nav-links li a:hover, .nav-links li a:focus {
+  background: #eaf3ff;
+  color: #185a9d;
+  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.10);
+}
+
+.nav-appointment {
+  background: #2979ff;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  margin-left: 18px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(41,121,255,0.08);
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-appointment:hover, .nav-appointment:focus {
+  background: #185a9d;
+  color: #fff !important;
 }
 
 /* Responsive layout */
@@ -72,27 +121,30 @@ body {
   }
 }
 
-
 /* 🔹 Background Box Section */
 .bg-box {
   width: 100%;
-  height: 80vh;
+  min-height: 100vh;          /* Ensures the background fills the screen */
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 24px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   display: flex;
-  align-items: center;
+  align-items: flex-start;    /* Align content to the top */
   justify-content: center;
   background: transparent;
-  margin-top: 20px;
+  padding: 100px 20px 40px;   /* Increased top padding to avoid header overlap */
+  box-sizing: border-box;
 }
 
 /* Background Image */
 .bg-box::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url("../image/default-teacher-cover.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -100,15 +152,17 @@ body {
   background-position: center;
   filter: brightness(0.75);
   z-index: 0;
+  min-height: 100%;
 }
 
-/* Foreground Content */
+/* Foreground Content inside bg-box */
 .bg-box > * {
   position: relative;
   z-index: 1;
   color: white;
   text-align: center;
 }
+
 
 /* Container Text Styles */
 .container h1 {
@@ -130,8 +184,8 @@ body {
 }
 
 .tag {
-  background-color: #3fb68b;
-  color: white;
+  background-color: #d7aa61;
+  color: hsl(0, 7%, 95%);
   padding: 10px 20px;
   border-radius: 25px;
   font-size: 1rem;
@@ -139,7 +193,7 @@ body {
 }
 
 .tag:hover {
-  background-color: #2b7a78;
+  background-color:#d7aa61;
   cursor: pointer;
 }
 
@@ -163,7 +217,7 @@ footer p {
 }
 
 footer a {
-  color: #f39c12;
+  color:#d7aa61;
   text-decoration: none;
   margin: 0 6px;
   transition: color 0.3s ease;
