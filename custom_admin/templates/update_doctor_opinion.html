@@ -1,0 +1,20 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Doctor Opinion</title>
+  <link rel="stylesheet" href="{% static 'css/patient_list.css' %}">
+</head>
+<body>
+  <h1>Update Doctor Opinion for {{ profile.full_name }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <a href="{% url 'custom_admin:patient_list' %}">Cancel</a>
+  </form>
+</body>
+</html>

@@ -1,10 +1,25 @@
-/* Sidebar */
+/* ================================
+   Layout Wrapper
+================================ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;              /* 👈 this makes sidebar and content side by side */
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* ================================
+   Sidebar
+================================ */
 .sidebar {
   width: 220px;
   background: #2c3e50;
   color: white;
   min-height: 100vh;
   padding: 20px;
+  flex-shrink: 0;             /* sidebar won’t shrink */
 }
 
 .sidebar h2 {
@@ -15,6 +30,7 @@
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar ul li {
@@ -24,8 +40,17 @@
 .sidebar ul li a {
   color: white;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-  text-decoration: underline;
+  color: #1abc9c;             /* nice hover effect */
+}
+
+/* ================================
+   Main Content
+================================ */
+.main-content {
+  flex: 1;                    /* takes up remaining space */
+  padding: 20px;
 }

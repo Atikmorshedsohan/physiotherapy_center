@@ -86,6 +86,7 @@ class Profile(models.Model):
     address = models.TextField(blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
     medical_history = models.TextField(blank=True, null=True)
+    doctor_opinion = models.TextField(blank=True, null=True)
     
 
     def __str__(self):

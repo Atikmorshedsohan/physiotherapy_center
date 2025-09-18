@@ -1,6 +1,6 @@
 import json
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -112,9 +112,14 @@ def doctor_list(request):
 
 
 @login_required
-def profile_view(request):
-    profile, created = Profile.objects.get_or_create(user=request.user)
-    return render(request, 'profile.html', {'profile': profile})
+def profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    appointments = Appointment.objects.filter(patient=request.user).order_by("scheduled_date", "scheduled_time")
+
+    return render(request, "profile.html", {
+        "profile": profile,
+        "appointments": appointments
+    })
 
 @login_required
 def edit_profile(request):
@@ -127,3 +132,12 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form})
+
+
+@login_required
+def cancel_appointment(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk, patient=request.user)
+    if request.method == "POST":
+        appointment.status = "Cancelled"
+        appointment.save()
+    return redirect("profile")  

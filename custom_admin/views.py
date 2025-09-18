@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from main_app.forms import DoctorForm,DiseaseForm, DoctorDiseaseAssignmentForm
+from main_app.forms import *
 from main_app.models import *
 
 
@@ -68,7 +68,7 @@ def doctor_list(request):
 
 @login_required
 def patient_list(request):
-    patients = User.objects.filter(is_admin=False, is_superuser=False, is_staff=False).order_by("full_name")
+    patients = User.objects.filter(is_admin=False, is_superuser=False, is_staff=False).order_by("id")
     return render(request, "patient_list.html", {"patients": patients})
 
 
@@ -115,16 +115,16 @@ def manage_diseases(request):
             if disease_form.is_valid():
                 disease = disease_form.save()
                 latest_id = disease.id
+            else:
+                print(disease_form.errors)  # Debugging in terminal
 
         elif "assignment_submit" in request.POST:
             assignment_form = DoctorDiseaseAssignmentForm(request.POST)
             if assignment_form.is_valid():
                 assignment = assignment_form.save()
                 latest_id = assignment.id
-
-        # If request is AJAX, return JSON
-        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            return JsonResponse({"latest_id": latest_id})
+            else:
+                print(assignment_form.errors)  # Debugging in terminal
 
     diseases = Disease.objects.all()
     assignments = DoctorDiseaseAssignment.objects.select_related("doctor", "disease")
@@ -137,3 +137,24 @@ def manage_diseases(request):
         "latest_id": latest_id,
     })
 
+
+def patient_profile(request, pk):
+    patient = get_object_or_404(User, pk=pk)
+    return render(request, 'patient_profile.html', {'patient': patient})
+
+
+
+def update_doctor_opinion(request, pk):
+    profile = get_object_or_404(Profile, user_id=pk)  
+    if request.method == "POST":
+        form = DoctorOpinionForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("custom_admin:patient_list")
+    else:
+        form = DoctorOpinionForm(instance=profile)
+
+    return render(request, "update_doctor_opinion.html", {
+        "form": form,
+        "profile": profile
+    })

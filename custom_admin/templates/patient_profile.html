@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ patient.full_name }}'s Profile</title>
+  <link rel="stylesheet" href="{% static 'css/patient_profile.css' %}">
+</head>
+<body>
+  {% include 'sidder_part.html' %}
+
+  <div class="main-content">
+    <header>
+      <h1>Patient Profile</h1>
+      <div class="user-info">
+        <span>Welcome, {{ request.user.username }}</span>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+      </div>
+    </header>
+
+    <section class="profile-section">
+      <h2>{{ patient.full_name }}</h2>
+      <ul>
+        <li><strong>Username:</strong> {{ patient.username }}</li>
+        <li><strong>Email:</strong> {{ patient.email }}</li>
+        <li><strong>Phone:</strong> {{ patient.phone }}</li>
+        <li><strong>Age:</strong> {{ patient.age }}</li>
+        <li><strong>Gender:</strong> {{ patient.gender }}</li>
+      </ul>
+      <a href="{% url 'custom_admin:patient_list' %}" class="back-btn">← Back to Patients List</a>
+    </section>
+  </div>
+</body>
+</html>

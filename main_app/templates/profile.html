@@ -1,18 +1,61 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
-{% include "header.html" %}
-
-{% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% include "header.html" %} {% block content %}
 <div class="profile-wrapper">
-    <div class="profile-card">
-        <h2>{{ request.user.username }}</h2>
-        <p><b>Email:</b> {{ request.user.email }}</p>
-        <p><b>Phone:</b> {{ profile.phone }}</p>
-        <p><b>Address:</b> {{ profile.address }}</p>
-        <p><b>Age:</b> {{ profile.age }}</p>
-        <p><b>Medical History:</b> {{ profile.medical_history }}</p>
-        <a href="{% url 'edit_profile' %}">Edit Profile</a>
-    </div>
+  <div class="profile-card">
+    <h2>{{ request.user.username }}</h2>
+    <p><b>Email:</b> {{ request.user.email }}</p>
+    <p><b>Phone:</b> {{ profile.phone }}</p>
+    <p><b>Address:</b> {{ profile.address }}</p>
+    <p><b>Age:</b> {{ profile.age }}</p>
+    <p><b>Medical History:</b> {{ profile.medical_history }}</p>
+    <p><b>Doctor Opinion:</b> {{ profile.doctor_opinion }}</p>
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+  </div>
+
+  <!-- ✅ New section: Appointment Status -->
+  <div class="appointments-card">
+    <h2>Your Appointments</h2>
+    {% if appointments %}
+    <table class="appointments-table">
+      <thead>
+        <tr>
+         
+          <th>Doctor</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+          <!-- ✅ new column -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for appointment in appointments %}
+        <tr>
+          
+          <td>{{ appointment.doctor.full_name }}</td>
+          <td>{{ appointment.scheduled_date }} {{ appointment.scheduled_time }}</td>
+          <td>{{ appointment.status }}</td>
+          <td>
+            {% if appointment.status != "Cancelled" %}
+            <form
+              method="post"
+              action="{% url 'cancel_appointment' appointment.id %}"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn-cancel">Cancel</button>
+            </form>
+            {% else %}
+            <span class="cancelled">Cancelled</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">You have no appointments yet.</p>
+    {% endif %}
+  </div>
 </div>
 
 <script src="{% static 'js/profile.js' %}"></script>

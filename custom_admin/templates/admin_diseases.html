@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <title>Manage Diseases</title>
     <link rel="stylesheet" href="{% static 'css/admin_diseases.css' %}" />
-    <script src="{% static 'js/admin_diseases.js' %}" defer></script>
   </head>
   <body>
     <div class="layout disease-admin">
@@ -14,15 +13,17 @@
 
       <div class="container">
         <div class="forms">
-          <!-- Disease Form (AJAX-enabled) -->
+          <!-- Disease Form -->
           <div class="card">
             <h2>Add Disease</h2>
-            <form id="diseaseForm" method="post">
+            <form method="post">
               {% csrf_token %}
               {{ disease_form.as_p }}
+              {% if disease_form.errors %}
+                <div class="errorlist">{{ disease_form.errors }}</div>
+              {% endif %}
               <button type="submit" name="disease_submit" class="btn">Add Disease</button>
             </form>
-            <div id="latestIdBox"></div>
           </div>
 
           <!-- Doctor-Disease Assignment Form -->
@@ -31,6 +32,9 @@
             <form method="post">
               {% csrf_token %}
               {{ assignment_form.as_p }}
+              {% if assignment_form.errors %}
+                <div class="errorlist">{{ assignment_form.errors }}</div>
+              {% endif %}
               <button type="submit" name="assignment_submit" class="btn">Assign Disease</button>
             </form>
           </div>

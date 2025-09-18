@@ -34,8 +34,9 @@ urlpatterns = [
     path("appointment/", views.appointment_page, name="appointment_page"),
     path("api/doctors/", views.doctor_list, name="doctor_list"),
     path("api/appointments/", views.create_appointment, name="create_appointment"),
-    path('profile/', views.profile_view, name='profile'),
+    path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path("appointments/<int:pk>/cancel/", views.cancel_appointment, name="cancel_appointment"),
     path('custom_admin/', include('custom_admin.urls')),
     
 ]
