@@ -1,0 +1,100 @@
+/* ================================
+   Inbox Container
+================================ */
+/* ================================
+   Main Content Layout
+================================ */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: #f4f6f9;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* keep content aligned properly */
+}
+
+.main-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  text-align: left;
+}
+
+/* ================================
+   Inbox List
+================================ */
+.inbox {
+  list-style: none;          /* remove black dots */
+  padding: 0;
+  margin: 0;
+  max-width: 800px;
+  width: 100%;
+}
+
+
+.message-card {
+  background: #ffffff;
+  border: 1px solid #d0e3f0;
+  border-left: 6px solid #4a90e2;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+
+.message-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ================================
+   Message Header
+================================ */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.message-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+/* ================================
+   Message Details
+================================ */
+.message-meta p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #34495e;
+}
+
+.message-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e1ecf4;
+  font-size: 1rem;
+  color: #2f3640;
+  line-height: 1.5;
+}
+
+/* ================================
+   Empty Inbox
+================================ */
+.no-messages {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 30px;
+}

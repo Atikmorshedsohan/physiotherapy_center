@@ -1,0 +1,37 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="{% static 'css/inbox.css' %}">
+</head>
+<body>
+    {% include "sidder_part.html" %}
+    
+    <div class="main-content">
+        <h2>Inbox</h2>
+        <ul class="inbox">
+            {% for msg in messages %}
+                <li class="message-card">
+                    <div class="message-header">
+                        <h3>{{ msg.subject }}</h3>
+                        <small class="timestamp">Sent at: {{ msg.created_at }}</small>
+                    </div>
+                    <div class="message-meta">
+                        <p><strong>From:</strong> {{ msg.sender.get_full_name|default:msg.sender.username }}</p>
+                        <p><strong>Email:</strong> {{ msg.email }}</p>
+                    </div>
+                    <div class="message-body">
+                        <p>{{ msg.body }}</p>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="no-messages">No messages yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+

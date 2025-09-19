@@ -1,3 +1,4 @@
+from django.db import transaction
 import json
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -6,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from main_app.models import *
 from .forms import *
+from django.db.models import F
 
 
 # Home Page View
@@ -88,20 +90,35 @@ def create_appointment(request):
             patient = request.user
             doctor = Doctor.objects.get(id=data["doctor"])
 
+            # 🔢 Calculate next serial number for this doctor & date
+            existing_count = Appointment.objects.filter(
+                doctor=doctor,
+                scheduled_date=data["scheduled_date"]
+            ).count()
+            serial_number = existing_count + 1
+
             appointment = Appointment.objects.create(
                 patient=patient,
                 doctor=doctor,
                 scheduled_date=data["scheduled_date"],
                 scheduled_time=data["scheduled_time"],
-                status=data.get("status", "Pending")
+                status=data.get("status", "Pending"),
+                serial_number=serial_number  # 👈 new field
             )
 
-            return JsonResponse({"success": True, "id": appointment.id})
+            return JsonResponse({
+                "success": True,
+                "id": appointment.id,
+                "serial_number": serial_number
+            })
 
         except Exception as e:
             return JsonResponse({"success": False, "error": str(e)}, status=400)
 
     return JsonResponse({"success": False, "error": "Invalid request"}, status=400)
+
+
+
 
 # API: return doctor list as JSON
 def doctor_list(request):
@@ -112,14 +129,15 @@ def doctor_list(request):
 
 
 @login_required
-def profile(request):
-    profile = get_object_or_404(Profile, user=request.user)
-    appointments = Appointment.objects.filter(patient=request.user).order_by("scheduled_date", "scheduled_time")
+def profile(request, pk):
+    profile = get_object_or_404(Profile, user_id=pk)
+    appointments = Appointment.objects.filter(patient_id=pk).order_by("scheduled_date", "scheduled_time")
 
     return render(request, "profile.html", {
         "profile": profile,
         "appointments": appointments
     })
+
 
 @login_required
 def edit_profile(request):
@@ -135,9 +153,56 @@ def edit_profile(request):
 
 
 @login_required
-def cancel_appointment(request, pk):
-    appointment = get_object_or_404(Appointment, pk=pk, patient=request.user)
+def cancel_appointment(request, appointment_id=None, pk=None):
+    appt_id = appointment_id or pk
+    if not appt_id:
+        return redirect("patient_profile", pk=request.user.pk)
+
+    try:
+        with transaction.atomic():
+            appointment = Appointment.objects.select_for_update().get(id=appt_id)
+
+            doctor = appointment.doctor
+            scheduled_date = appointment.scheduled_date
+            cancelled_serial = appointment.serial_number
+
+            appointment.delete()
+
+            # shift later serials down by 1
+            Appointment.objects.filter(
+                doctor=doctor,
+                scheduled_date=scheduled_date,
+                serial_number__gt=cancelled_serial
+            ).update(serial_number=F("serial_number") - 1)
+
+        return redirect("patient_profile", pk=request.user.pk)
+
+    except Appointment.DoesNotExist:
+        return redirect("patient_profile", pk=request.user.pk)
+    except Exception as e:
+        return redirect("patient_profile", pk=request.user.pk)
+    
+    
+
+def send_message(request):
     if request.method == "POST":
-        appointment.status = "Cancelled"
-        appointment.save()
-    return redirect("profile")  
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+
+            if request.user.is_authenticated:
+                message.sender = request.user
+            else:
+                message.sender = None  # or handle guest sender
+
+            admin_user = User.objects.filter(is_superuser=True).first()
+            if admin_user:
+                message.receiver = admin_user
+                message.save()
+                return redirect("about")
+    else:
+        form = MessageForm()
+
+    return render(request, "send_message.html", {"form": form})
+
+

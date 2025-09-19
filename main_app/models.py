@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 # Extending Django User model (custom User model)
 class User(AbstractUser):
     full_name = models.CharField(max_length=150)
@@ -16,8 +17,12 @@ class User(AbstractUser):
 
 class Admin(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=50, help_text='Admin Role, e.g., Superadmin, Receptionist')
-    permissions = models.TextField(help_text='JSON or text for role-based access control')
+    role = models.CharField(
+        max_length=50, help_text="Admin Role, e.g., Superadmin, Receptionist"
+    )
+    permissions = models.TextField(
+        help_text="JSON or text for role-based access control"
+    )
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
@@ -29,7 +34,6 @@ class Doctor(models.Model):
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
     availability = models.JSONField(default=dict, blank=True, null=True)
-
 
     def __str__(self):
         return self.full_name
@@ -50,17 +54,18 @@ class DoctorDiseaseAssignment(models.Model):
 
 class Appointment(models.Model):
     STATUS_CHOICES = [
-        ('Pending', 'Pending'),
-        ('Confirmed', 'Confirmed'),
-        ('Cancelled', 'Cancelled'),
-        ('Completed', 'Completed'),
+        ("Pending", "Pending"),
+        ("Confirmed", "Confirmed"),
+        ("Cancelled", "Cancelled"),
+        ("Completed", "Completed"),
     ]
     patient = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     scheduled_date = models.DateField()
     scheduled_time = models.TimeField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Pending")
     created_at = models.DateTimeField(auto_now_add=True)
+    serial_number = models.PositiveIntegerField(null=True, blank=True)
 
 
 class Visit(models.Model):
@@ -87,7 +92,23 @@ class Profile(models.Model):
     age = models.IntegerField(blank=True, null=True)
     medical_history = models.TextField(blank=True, null=True)
     doctor_opinion = models.TextField(blank=True, null=True)
-    
 
     def __str__(self):
         return self.user.username
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="sent_messages"
+    )
+    receiver = models.ForeignKey(
+            User, on_delete=models.CASCADE, related_name="received_messages"
+        )
+    subject = models.CharField(max_length=200)
+    body = models.TextField()
+    email = models.EmailField(null=True, blank=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+            return f"From {self.sender} to {self.receiver} - {self.subject}"

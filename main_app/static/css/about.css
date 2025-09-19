@@ -1,82 +1,83 @@
+/* ================================
+   About Page Styles
+================================ */
 .about-main {
-  background-color: #f9ffe5;
+  background-color: #e2ed9f;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  padding: 0 0 40px 0;
   font-family: Arial, sans-serif;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  overflow: hidden;
 }
 
-/* Header Section */
-.header {
-    background: #1761a0;
-    color: white;
-    padding: 48px 0 40px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    border-bottom-left-radius: 32px;
-    border-bottom-right-radius: 32px;
-}
-
-.header-text {
-  flex: 1;
-  min-width: 220px;
-  padding-left: 48px;
-}
-
-.header-text h2 {
-  margin: 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
-.header-img {
-  width: 100%;
-  max-width: 600px;
-  min-width: 260px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  margin-right: 32px;
-}
-
-/* Content Section */
+/* ================================
+   Content Section
+================================ */
 .about-content {
   padding: 32px 16px 0 16px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
-
 .about-content h3 {
   color: #2c3e50;
+  margin-top: 24px;
 }
-
 .about-content p {
   color: #333;
   font-size: 1.1rem;
   line-height: 1.6;
 }
 
-/* Buttons */
-button {
-  border: none;
-  border-radius: 8px;
-  padding: 12px 32px;
+/* ================================
+   Header About Section
+================================ */
+.header-about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.header-text {
+  flex: 1;
+  min-width: 220px;
+}
+.header-text h2 {
+  margin: 0;
+  color: #333;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.header-img {
+  width: 100%;
+  max-width: 500px;
+  min-width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+/* ================================
+   Buttons
+================================ */
+.btn-teal {
+  display: inline-block;
+  background: #2186c4;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 10px;
   font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s ease;
 }
-
-button:hover {
+.btn-teal:hover {
+  background: #1a6aa3;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
-.btn-orange { background: #ff9800; color: white; font-weight: 600; }
-.btn-green { background: #4caf50; color: white; }
-.btn-teal { background: #3fb68b; color: white; }
-
-/* Action buttons */
 .action-buttons {
   display: flex;
   gap: 16px;
@@ -84,14 +85,16 @@ button:hover {
   margin: 32px 0;
 }
 
-/* Stats Section */
+/* ================================
+   Stats Section
+================================ */
 .stats {
   display: flex;
   gap: 24px;
   justify-content: center;
   margin-bottom: 32px;
+  flex-wrap: wrap;
 }
-
 .stat-box {
   background: #fff;
   border-radius: 16px;
@@ -99,24 +102,26 @@ button:hover {
   padding: 16px 24px;
   text-align: center;
   transition: transform 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
 }
-
 .stat-box:hover {
   transform: scale(1.05);
 }
-
 .stat-value {
   font-size: 2rem;
   font-weight: bold;
   color: #4caf50;
 }
-
 .stat-label {
   font-size: 1rem;
-  color: #888;
+  color: #666;
 }
 
-/* Review Card */
+/* ================================
+   Review Card
+================================ */
 .review-card {
   background: #fff;
   border-radius: 16px;
@@ -128,18 +133,28 @@ button:hover {
   transform: translateY(30px);
   transition: all 0.8s ease-in-out;
 }
-
 .review-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .review-card h4 {
   color: #2c3e50;
   margin-bottom: 12px;
 }
-
 .review-card img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
+}
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 900px) {
+  .header-about {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header-img {
+    margin: 20px auto 0 auto;
+  }
 }

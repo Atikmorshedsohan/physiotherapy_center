@@ -1,10 +1,17 @@
-/* Layout: sidebar + content */
+/* ================================
+   General Layout
+================================ */
 .layout {
   display: flex;
   min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6f9;
+  color: #333;
 }
 
-/* Appointment content sits right of sidebar */
+/* ================================
+   Appointment Page Wrapper
+================================ */
 .admin-appointment-page {
   flex: 1;
   padding: 20px;
@@ -12,17 +19,19 @@
   overflow-x: auto;
 }
 
-/* Keep heading style simple */
 .admin-appointment-page h2 {
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 24px;
   color: #2c3e50;
+  font-weight: 600;
 }
 
-/* Search input */
-.admin-appointment-page #search {
+/* ================================
+   Search Input
+================================ */
+#search {
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
@@ -30,12 +39,14 @@
   max-width: 350px;
 }
 
-/* Table */
+/* ================================
+   Table Styling
+================================ */
 .admin-appointment-page table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -60,10 +71,45 @@
 .admin-appointment-page table tbody tr:hover {
   background: #f1f7ff;
   transform: scale(1.002);
+  transition: 0.2s ease-in-out;
 }
 
-/* Delete button */
-.admin-appointment-page .delete-btn {
+/* ================================
+   Select (Status Dropdown)
+================================ */
+.admin-appointment-page select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.admin-appointment-page select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* ================================
+   Buttons
+================================ */
+.btn {
+  background: #3498db;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #2980b9;
+}
+
+.delete-btn {
   background: #e74c3c;
   color: white;
   padding: 6px 12px;
@@ -73,6 +119,6 @@
   cursor: pointer;
 }
 
-.admin-appointment-page .delete-btn:hover {
+.delete-btn:hover {
   background: #c0392b;
 }

@@ -75,7 +75,7 @@ def patient_list(request):
 
 @login_required
 def appointment_list(request):
-    appointments = Appointment.objects.select_related("patient", "doctor").order_by("-id", "-scheduled_date", "-scheduled_time")
+    appointments = Appointment.objects.select_related("patient", "doctor").order_by("id", "scheduled_date", "scheduled_time")
     return render(request, "admin_appointment.html", {"appointments": appointments})
 
 
@@ -158,3 +158,12 @@ def update_doctor_opinion(request, pk):
         "form": form,
         "profile": profile
     })
+
+
+
+
+@login_required
+def inbox(request):
+    # ✅ admin should only see messages where they are the receiver
+    messages = Message.objects.filter(receiver=request.user).order_by("-created_at")
+    return render(request, "inbox.html", {"messages": messages})

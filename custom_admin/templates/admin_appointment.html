@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Manage Appointments</title>
   <link rel="stylesheet" href="{% static 'css/admin_appointment.css' %}">
-  <link rel="stylesheet" href="{% static 'css/sidder_part.css' %}">
 </head>
 <body>
   <div class="layout">
@@ -19,6 +18,7 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Serial No</th>
             <th>Patient</th>
             <th>Doctor</th>
             <th>Date</th>
@@ -31,6 +31,7 @@
           {% for app in appointments %}
           <tr>
             <td>{{ app.id }}</td>
+            <td>{{ forloop.counter }}</td>
             <td>{{ app.patient.full_name }}</td>
             <td>{{ app.doctor.full_name }}</td>
             <td>{{ app.scheduled_date }}</td>
@@ -42,6 +43,7 @@
                   <option value="Pending" {% if app.status == "Pending" %}selected{% endif %}>Pending</option>
                   <option value="Confirmed" {% if app.status == "Confirmed" %}selected{% endif %}>Confirmed</option>
                   <option value="Completed" {% if app.status == "Completed" %}selected{% endif %}>Completed</option>
+                  <option value="Cancelled" {% if app.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
                 </select>
               </form>
             </td>
@@ -53,7 +55,7 @@
             </td>
           </tr>
           {% empty %}
-          <tr><td colspan="7">No appointments found.</td></tr>
+          <tr><td colspan="8">No appointments found.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -62,6 +64,4 @@
 
   <script src="{% static 'js/admin_appointment.js' %}"></script>
 </body>
-
-
 </html>

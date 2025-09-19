@@ -1,0 +1,120 @@
+/* ================================
+   Send Message Page Styles
+================================ */
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  background: #f4f7fb;
+  color: #333;
+}
+
+/* ================================
+   Content Wrapper
+   (keeps form centered while header stays top)
+================================ */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px; 
+  margin-bottom: 80px; 
+}
+
+/* ================================
+   Page Title
+================================ */
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #185a9d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ================================
+   Form Container
+================================ */
+form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(24, 90, 157, 0.1);
+  width: 420px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ================================
+   Form Fields
+================================ */
+form p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.3s, box-shadow 0.3s;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #2979ff;
+  box-shadow: 0 0 6px rgba(41, 121, 255, 0.2);
+  outline: none;
+}
+
+/* ================================
+   Button Styling
+================================ */
+button {
+  padding: 12px;
+  background: #2979ff;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+button:hover {
+  background: #185a9d;
+  box-shadow: 0 3px 8px rgba(24, 90, 157, 0.25);
+}
+
+button:active {
+  background: #144a87;
+}
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+    width: 95%;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+}

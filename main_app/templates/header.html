@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/header.css' %}" />
 <div class="header">
   <!-- Logo on the left -->
   <div class="header-left">
@@ -10,14 +10,11 @@
         class="logo"
       />
     </a>
-    <a
-      href="https://just.edu.bd/"
-      target="_blank"
-      rel="noopener"
-      class="logo-text"
-    >
-      Jashore University of Science and Technology
-    </a>
+    <div class="logo-text">
+      <a href="https://just.edu.bd/" target="_blank" rel="noopener">
+        Jashore University of Science and Technology
+      </a>
+    </div>
   </div>
 
   <!-- Navigation -->
@@ -30,7 +27,12 @@
       <li><a href="{% url 'contact' %}">Contact</a></li>
 
       {% if user.is_authenticated %}
-      <li><a href="{% url 'profile' %}">Welcome, {{ user.username }}</a></li>
+      <li>
+        <a href="{% url 'patient_profile' user.pk %}"
+          >Welcome, {{ user.username }}</a
+        >
+      </li>
+
       <li><a href="{% url 'logout' %}">Logout</a></li>
       {% else %}
       <li><a href="{% url 'login' %}">Login</a></li>

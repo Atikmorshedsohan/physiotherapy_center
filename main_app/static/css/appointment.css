@@ -1,3 +1,30 @@
+.page-title h1 {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-title h1 {
+  text-align: center;
+}
+/* Match home page header style for university name */
+.logo-text {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #185a9d;
+  letter-spacing: 0.5px;
+  margin-left: 0;
+  white-space: nowrap;
+  text-decoration: none;
+}
 /* General Reset */
 * {
   margin: 0;

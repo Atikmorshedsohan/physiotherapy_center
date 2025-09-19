@@ -24,7 +24,9 @@
           <th>Doctor</th>
           <th>Date</th>
           <th>Status</th>
+          <th>Serial Number</th>
           <th>Actions</th>
+          
           <!-- ✅ new column -->
         </tr>
       </thead>
@@ -35,6 +37,7 @@
           <td>{{ appointment.doctor.full_name }}</td>
           <td>{{ appointment.scheduled_date }} {{ appointment.scheduled_time }}</td>
           <td>{{ appointment.status }}</td>
+          <td>{{ appointment.serial_number }}</td>
           <td>
             {% if appointment.status != "Cancelled" %}
             <form

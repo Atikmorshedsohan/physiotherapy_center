@@ -134,3 +134,9 @@ class DoctorOpinionForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['doctor_opinion']  # only allow updating this field
+        
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ["email", "subject", "body"]        
