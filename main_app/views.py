@@ -12,7 +12,8 @@ from django.db.models import F
 
 # Home Page View
 def home(request):
-    return render(request, "index.html")
+    diseases = Disease.objects.all()
+    return render(request, "index.html", {"diseases": diseases})
 
 
 # Services Page View

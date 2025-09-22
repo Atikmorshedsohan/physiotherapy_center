@@ -28,7 +28,6 @@ body {
   border-bottom-right-radius: 20px 12px;
 }
 
-/* Logo (already has width/height inline, no need to resize here) */
 .header-left {
   display: flex;
   align-items: center;
@@ -47,23 +46,19 @@ body {
   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #185a9d; /* Blue for university name */
+  color: #185a9d;
   letter-spacing: 0.5px;
   margin-left: 0;
   white-space: nowrap;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
-/* Navigation on right */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 32px;
   margin: 0;
   padding: 0;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
   align-items: center;
   min-height: 48px;
   justify-content: flex-end;
@@ -71,7 +66,7 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: #000; /* Black anchoring links */
+  color: #000;
   font-weight: 600;
   font-size: 1.08rem;
   letter-spacing: 0.5px;
@@ -81,10 +76,11 @@ body {
   display: inline-block;
 }
 
-.nav-links li a:hover, .nav-links li a:focus {
+.nav-links li a:hover,
+.nav-links li a:focus {
   background: #eaf3ff;
   color: #185a9d;
-  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.10);
+  box-shadow: 0 2px 8px rgba(24, 90, 157, 0.1);
 }
 
 .nav-appointment {
@@ -98,22 +94,21 @@ body {
   margin-left: 18px;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(41,121,255,0.08);
+  box-shadow: 0 2px 8px rgba(41, 121, 255, 0.08);
   text-decoration: none;
   display: inline-block;
 }
-.nav-appointment:hover, .nav-appointment:focus {
+.nav-appointment:hover,
+.nav-appointment:focus {
   background: #185a9d;
   color: #fff !important;
 }
 
-/* Responsive layout */
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .nav-links {
     flex-direction: column;
     gap: 12px;
@@ -124,20 +119,19 @@ body {
 /* 🔹 Background Box Section */
 .bg-box {
   width: 100%;
-  min-height: 100vh;          /* Ensures the background fills the screen */
+  min-height: 100vh;
   position: relative;
   overflow: visible;
   border-radius: 24px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   display: flex;
-  align-items: flex-start;    /* Align content to the top */
+  align-items: flex-start;
   justify-content: center;
   background: transparent;
-  padding: 100px 20px 40px;   /* Increased top padding to avoid header overlap */
+  padding: 100px 20px 40px;
   box-sizing: border-box;
 }
 
-/* Background Image */
 .bg-box::before {
   content: "";
   position: absolute;
@@ -147,7 +141,6 @@ body {
   bottom: 0;
   background-image: url("../image/default-teacher-cover.jpg");
   background-size: cover;
-  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
   filter: brightness(0.75);
@@ -155,7 +148,6 @@ body {
   min-height: 100%;
 }
 
-/* Foreground Content inside bg-box */
 .bg-box > * {
   position: relative;
   z-index: 1;
@@ -163,8 +155,6 @@ body {
   text-align: center;
 }
 
-
-/* Container Text Styles */
 .container h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -190,21 +180,167 @@ body {
   border-radius: 25px;
   font-size: 1rem;
   transition: background-color 0.3s ease;
+  text-decoration: none;   /* 🔹 removes underline */
+  display: inline-block;   /* keeps padding & shape consistent */
 }
 
 .tag:hover {
-  background-color:#d7aa61;
+  background-color: #b98b40;
   cursor: pointer;
 }
 
-/* 🔹 Footer Section */
+
+/* 🔹 Why Choose Section */
+.why-choose-section {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.why-choose-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #185a9d;
+}
+
+.why-choose-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.why-choose-features {
+  flex: 1;
+  text-align: left;
+}
+
+.why-choose-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.why-choose-features li {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.why-choose-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #2979ff;
+  font-weight: bold;
+}
+
+.why-choose-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+
+.stat-card {
+  background: #f5f9ff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #185a9d;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* 🔹 What Makes Us Different Section */
+.different-section {
+  background: #f9f9f9;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.different-title {
+  color: #2196f3;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.different-cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.service-card {
+  background: #00bcd4;
+  color: #fff;
+  border-radius: 10px;
+  width: 350px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.service-card.indoor-service {
+  background: #0a174e;
+}
+
+.service-card.online-service {
+  background: #2196f3;
+}
+
+.service-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.service-card p {
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .different-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-card {
+    width: 90%;
+    margin-bottom: 30px;
+  }
+}
+
 /* 🔹 Compact Footer Section */
 footer {
   background: linear-gradient(135deg, #2c3e50, #34495e);
   color: #ecf0f1;
   text-align: center;
-  padding: 10px 15px;          /* Smaller vertical padding */
-  font-size: 0.75rem;          /* Smaller font */
+  padding: 10px 15px;
+  font-size: 0.75rem;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
   letter-spacing: 0.3px;
   margin-top: auto;
@@ -213,11 +349,11 @@ footer {
 }
 
 footer p {
-  margin: 4px 0;               /* Less spacing between lines */
+  margin: 4px 0;
 }
 
 footer a {
-  color:#d7aa61;
+  color: #d7aa61;
   text-decoration: none;
   margin: 0 6px;
   transition: color 0.3s ease;
@@ -230,7 +366,29 @@ footer a:hover {
 }
 
 .footer-links {
-  margin-top: 6px;             /* Less space above links */
+  margin-top: 6px;
 }
 
+.disease-section {
+  padding: 40px;
+  background: #f9f9f9;
+  text-align: center;
+}
 
+.disease-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.disease-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.disease-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

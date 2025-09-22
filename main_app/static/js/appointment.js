@@ -1,4 +1,19 @@
 let allDoctors = [];
+let isLoggedIn = false; // Track login status
+
+// ==============================
+// Check Login Status
+// ==============================
+async function checkLoginStatus() {
+    try {
+        const response = await fetch("/api/check-login/", { credentials: "include" });
+        if (!response.ok) throw new Error("Not logged in");
+        const data = await response.json();
+        isLoggedIn = data.is_authenticated;
+    } catch (error) {
+        isLoggedIn = false;
+    }
+}
 
 // ==============================
 // Load Doctors from Backend
@@ -6,9 +21,7 @@ let allDoctors = [];
 async function loadDoctors() {
     try {
         const response = await fetch("/api/doctors/", { credentials: "include" });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         allDoctors = await response.json();
         renderDoctors(allDoctors);
     } catch (error) {
@@ -33,15 +46,9 @@ function renderDoctors(list) {
         const card = document.createElement("div");
         card.classList.add("doctor-card");
 
-        let availability = doc.availability;
-        if (!availability) {
-            availability = {};
-        } else if (typeof availability === "string") {
-            try {
-                availability = JSON.parse(availability);
-            } catch (e) {
-                availability = {};
-            }
+        let availability = doc.availability || {};
+        if (typeof availability === "string") {
+            try { availability = JSON.parse(availability); } catch (e) { availability = {}; }
         }
 
         let availabilityHtml = "<ul>";
@@ -54,13 +61,18 @@ function renderDoctors(list) {
         }
         availabilityHtml += "</ul>";
 
+        // Button behavior based on login
+        const bookButton = isLoggedIn
+            ? `<button onclick="bookDoctor(${doc.id})">Book Now</button>`
+            : `<button onclick="redirectToLogin()">Book Now</button>`;
+
         card.innerHTML = `
             <h2>${doc.full_name}</h2>
             <p><strong>Specialization:</strong> ${doc.specialization}</p>
             <p><strong>Phone:</strong> ${doc.phone}</p>
             <p><strong>Email:</strong> ${doc.email}</p>
             <div><strong>Availability:</strong> ${availabilityHtml}</div>
-            <button onclick="bookDoctor(${doc.id})">Book Now</button>
+            ${bookButton}
         `;
 
         container.appendChild(card);
@@ -118,7 +130,17 @@ function showSuggestions() {
 // ==============================
 // Modal Handling
 // ==============================
+// ==============================
+// Book Doctor / Modal Handling
+// ==============================
 function bookDoctor(doctorId) {
+    if (!isLoggedIn) {
+        // Only alert once and redirect
+        alert("Please login to book an appointment.");
+        window.location.href = "/login/";
+        return;
+    }
+
     const doctor = allDoctors.find(d => d.id === doctorId);
     if (doctor) {
         document.getElementById("doctorId").value = doctor.id;
@@ -126,15 +148,18 @@ function bookDoctor(doctorId) {
     }
 }
 
-function closeModal() {
-    document.getElementById("appointmentModal").style.display = "none";
-}
-
 // ==============================
 // Form Submit (Book Appointment)
 // ==============================
 document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
     e.preventDefault();
+
+    // Prevent submission if user is not logged in
+    if (!isLoggedIn) {
+        alert("Please login to book an appointment.");
+        window.location.href = "/login/";
+        return;
+    }
 
     const doctorId = document.getElementById("doctorId").value;
     const scheduledDate = document.getElementById("scheduledDate").value;
@@ -160,7 +185,7 @@ document.getElementById("appointmentForm").addEventListener("submit", async func
                 "X-CSRFToken": getCookie("csrftoken")
             },
             body: JSON.stringify(formData),
-            credentials: "include"   // ✅ send session cookie with request
+            credentials: "include"
         });
 
         const data = await response.json();
@@ -168,17 +193,15 @@ document.getElementById("appointmentForm").addEventListener("submit", async func
         if (response.ok && data.success) {
             alert("Appointment booked successfully!");
             closeModal();
-        } else if (response.status === 403) {
-            alert("Please login to book an appointment.");
-            window.location.href = "/login/";
         } else {
             alert("Error: " + (data.error || "Something went wrong."));
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Something went wrong.");
+        alert("Something went wrong. Please try again.");
     }
 });
+
 
 // ==============================
 // Helper: Get CSRF Token
@@ -187,8 +210,8 @@ function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
         const cookies = document.cookie.split(";");
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
             if (cookie.startsWith(name + "=")) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
@@ -201,4 +224,7 @@ function getCookie(name) {
 // ==============================
 // Init
 // ==============================
-document.addEventListener("DOMContentLoaded", loadDoctors);
+document.addEventListener("DOMContentLoaded", async () => {
+    await checkLoginStatus(); // ✅ Ensure login status before rendering buttons
+    loadDoctors();
+});

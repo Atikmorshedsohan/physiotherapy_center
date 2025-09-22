@@ -1,26 +1,138 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Physiotherapy Center</title>
-  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-</head>
-<body>
-  {% include 'header.html' %}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Physiotherapy Center</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  </head>
+  <body>
+    {% include 'header.html' %}
 
-  <div class="bg-box">
-    <div class="container">
-      <h1>Welcome to the Physiotherapy Center</h1>
-      <p>We are here to help you recover and improve your physical health.</p>
-      <div class="tags">
-        <span class="tag">Physiotherapy</span>
-        <span class="tag">Rehabilitation</span>
-        <span class="tag">Wellness</span>
+    <div class="bg-box">
+      <div class="container">
+        <h1>Welcome to the Physiotherapy Center</h1>
+        <p>We are here to help you recover and improve your physical health.</p>
+        <div class="tags">
+          <a
+            href="https://en.wikipedia.org/wiki/Physiotherapy"
+            target="_blank"
+            class="tag"
+            >Physiotherapy</a
+          >
+          <a
+            href="https://en.wikipedia.org/wiki/Rehabilitation"
+            target="_blank"
+            class="tag"
+            >Rehabilitation</a
+          >
+          <a
+            href="https://en.wikipedia.org/wiki/Wellness_(alternative_medicine)"
+            target="_blank"
+            class="tag"
+            >Wellness</a
+          >
+        </div>
       </div>
     </div>
-  </div>
 
-  {% include 'footer.html' %}
-</body>
+    <!-- Why Choose Section (above footer) -->
+    <div class="why-choose-section">
+      <h2 class="why-choose-title">
+        Why Do You Choose JUST Physiotherapy Center?
+      </h2>
+      <div class="why-choose-content">
+        <div class="why-choose-features">
+          <ul>
+            <li>Highly skilled team delivers top treatment</li>
+            <li>Advanced equipment for faster recovery.</li>
+            <li>Easily accessible clinic for your comfort</li>
+            <li>Flexible appointment times to fit busy life</li>
+            <li>Recovered our patients within 15 sessions</li>
+            <li>We treat our patients with best effort</li>
+            <li>We provide special treatment plans</li>
+            <li>Also offer single rooms for stay</li>
+          </ul>
+        </div>
+        <div class="why-choose-stats">
+          <div class="stat-card">
+            <span class="stat-value">100%</span
+            ><span class="stat-label">Service Quality</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">65+</span
+            ><span class="stat-label">Skilled Physiotherapists</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">96%</span
+            ><span class="stat-label">Recovery</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">100%</span
+            ><span class="stat-label">Satisfied Patients</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What Makes us Different Section -->
+    <section class="different-section">
+      <h2 class="different-title">What Makes us Different?</h2>
+      <div class="different-cards">
+        <div class="service-card home-service">
+          <div class="service-icon">&#x1F3E0;</div>
+          <h3>Home Service</h3>
+          <p>
+            We offer physiotherapy at your home. Our skilled therapists can use
+            advanced techniques to help with muscle, nerve, and breathing
+            problems. We aim to improve your movement, reduce pain, and enhance
+            your quality of life. We offer flexible appointment times and
+            personalized treatment plans to fit your needs. Contact us to
+            schedule a safe and protective in-home session.
+          </p>
+        </div>
+        <div class="service-card indoor-service">
+          <div class="service-icon">&#x1F6AA;</div>
+          <h3>Indoor Service</h3>
+          <p>
+            Our physiotherapy program provides exceptional care and recovery
+            help in your home. Our trained therapists in Dhaka will create a
+            custom plan to meet your health goals. We offer services like
+            hands-on therapy, exercise plans, and pain management. This service
+            helps with injury recovery, managing long-term conditions, and
+            improving overall physical health. Book your in-home session with us
+            today.
+          </p>
+        </div>
+        <div class="service-card online-service">
+          <div class="service-icon">&#x1F4BB;</div>
+          <h3>Online Consultation Service</h3>
+          <p>
+            We also offer virtual physiotherapy so you can talk to a therapist
+            from home. This online service gives you advice and treatment plans
+            through video calls, making it easy and convenient. Whether you have
+            long-term health issues or are recovering from an injury, our online
+            service helps you manage your symptoms and improve your well-being.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disease Section -->
+    <section class="disease-section">
+      <h2 class="disease-title">Our Treatments</h2>
+      <div class="disease-list">
+        {% for disease in diseases %}
+          <div class="disease-card">
+            <h3>{{ disease.name }}</h3>
+            <p>{{ disease.description }}</p>
+          </div>
+        {% empty %}
+          <p>No diseases found.</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% include 'footer.html' %}
+  </body>
 </html>
