@@ -131,12 +131,16 @@ def doctor_list(request):
 
 @login_required
 def profile(request, pk):
-    profile = get_object_or_404(Profile, user_id=pk)
-    appointments = Appointment.objects.filter(patient_id=pk).order_by("scheduled_date", "scheduled_time")
+    # Get user directly, since your custom User holds profile info
+    user = get_object_or_404(User, pk=pk)
+
+    appointments = Appointment.objects.filter(patient_id=pk).order_by(
+        "scheduled_date", "scheduled_time"
+    )
 
     return render(request, "profile.html", {
-        "profile": profile,
-        "appointments": appointments
+        "profile": user,        # now "profile" is actually the User
+        "appointments": appointments,
     })
 
 
